@@ -30,8 +30,32 @@ namespace SHA256Hashing_Api_POC.Controllers
             return hash;
         }
 
-        [HttpPost("GetFileHash")]
-        public async Task<ActionResult<string>> GetFileHash(IFormFile file)
+        [HttpPost("GetXMLHash")]
+        public async Task<ActionResult<string>> GetXMLHash(IFormFile file)
+        {
+            //validate file name, type, ext
+            //exception handling
+            string hash = String.Empty;
+            if (file.Length > 0)
+            {
+                try
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(stream);
+                        hash = await GetHashSha256(Encoding.UTF8.GetString(stream.GetBuffer(), 0, (int)stream.Length));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return hash;
+        }
+
+        [HttpPost("GetHTMLHash")]
+        public async Task<ActionResult<string>> GetHTMLHash(IFormFile file)
         {
             //validate file name, type, ext
             //exception handling
