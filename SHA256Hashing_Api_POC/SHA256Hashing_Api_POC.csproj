@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>SHA256Hashing-Api-POC</RootNamespace>
+    <RootNamespace>SHA256Hashing_Api_POC</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
